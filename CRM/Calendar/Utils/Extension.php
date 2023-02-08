@@ -8,7 +8,7 @@ class CRM_Calendar_Utils_Extension {
    * @return mixed
    */
   public static function getImagePath() {
-    return str_replace($_SERVER['DOCUMENT_ROOT'], '', CRM_Core_Config::singleton()->extensionsDir . CRM_Calendar_ExtensionUtil::LONG_NAME . '/img/');
+    return str_replace($_SERVER['DOCUMENT_ROOT'], '', CRM_Core_Config::singleton()->extensionsDir . CRM_Civicalendar_ExtensionUtil::LONG_NAME . '/img/');
   }
 
   /**

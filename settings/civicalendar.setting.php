@@ -1,6 +1,6 @@
 <?php
 
-use CRM_Calendar_ExtensionUtil as E;
+use CRM_Civicalendar_ExtensionUtil as E;
 
 return [
   'civicalendar_activity_types' => [

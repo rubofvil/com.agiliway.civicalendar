@@ -1,6 +1,6 @@
 <?php
 
-use CRM_Calendar_ExtensionUtil as E;
+use CRM_Civicalendar_ExtensionUtil as E;
 
 /**
  * Gets calendar via API

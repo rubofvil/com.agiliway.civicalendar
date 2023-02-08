@@ -1,6 +1,6 @@
 <?php
 
-use CRM_Calendar_ExtensionUtil as E;
+use CRM_Civicalendar_ExtensionUtil as E;
 
 // AUTO-GENERATED FILE -- Civix may overwrite any changes made to this file
 

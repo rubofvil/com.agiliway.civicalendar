@@ -135,7 +135,7 @@ function calendar_civicrm_pageRun(&$page) {
 
   if ($pageName == 'CRM_Event_Page_EventInfo' && CRM_Core_Permission::check('register for events')) {
     CRM_Core_Region::instance('page-body')->add([
-      'template' => CRM_Calendar_ExtensionUtil::path() . '/templates/CRM/Calendar/Page/Field/EventInfo.tpl'
+      'template' => CRM_Civicalendar_ExtensionUtil::path() . '/templates/CRM/Calendar/Page/Field/EventInfo.tpl'
     ]);
   }
 }
@@ -167,6 +167,6 @@ function _calendar_civix_addJSCss() {
 
   CRM_Core_Resources::singleton()->addVars('datepicker_locale', ['language' => CRM_Calendar_Utils_Locale::getCurrentLocaleForCalendar()]);
   CRM_Core_Region::instance('page-header')->add([
-    'scriptUrl' => CRM_Calendar_ExtensionUtil::url('js/DatepickerFix.js'),
+    'scriptUrl' => CRM_Civicalendar_ExtensionUtil::url('js/DatepickerFix.js'),
   ]);
 }

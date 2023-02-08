@@ -1,6 +1,6 @@
 <?php
 
-use CRM_Calendar_ExtensionUtil as E;
+use CRM_Civicalendar_ExtensionUtil as E;
 
 class CRM_Calendar_Form_Calendar extends CRM_Core_Form {
 

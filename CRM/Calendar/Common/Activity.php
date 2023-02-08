@@ -1,6 +1,6 @@
 <?php
 
-use CRM_Calendar_ExtensionUtil as E;
+use CRM_Civicalendar_ExtensionUtil as E;
 
 class CRM_Calendar_Common_Activity {
 
@@ -58,17 +58,17 @@ class CRM_Calendar_Common_Activity {
         contact.display_name,
         contact.contact_type,
         contact.image_URL
-        
+
       FROM `civicrm_activity`
-      
+
       JOIN `civicrm_activity_contact` ON civicrm_activity_contact.activity_id = civicrm_activity.id
       LEFT JOIN `civicrm_case_activity` ON civicrm_case_activity.activity_id = civicrm_activity.id
       LEFT JOIN `civicrm_option_group` AS priority_group ON priority_group.name = "priority"
-      LEFT JOIN `civicrm_option_value` AS priority_value 
+      LEFT JOIN `civicrm_option_value` AS priority_value
         ON (priority_value.option_group_id = priority_group.id AND civicrm_activity.priority_id = priority_value.value)
-      
+
       LEFT JOIN `civicrm_option_group` AS activity_type_group ON activity_type_group.name = "activity_type"
-      LEFT JOIN `civicrm_option_value` AS activity_type_value 
+      LEFT JOIN `civicrm_option_value` AS activity_type_value
         ON (activity_type_value.option_group_id = activity_type_group.id AND civicrm_activity.activity_type_id = activity_type_value.value )
 
       LEFT JOIN civicrm_contact AS contact
@@ -76,11 +76,11 @@ class CRM_Calendar_Common_Activity {
     ';
 
     if (!empty($activityRoleId) && $activityRoleId == self::ACTIVITY_ROLE_ASSIGNEE_ID) {
-      $query .= ' 
+      $query .= '
         LEFT JOIN `civicrm_activity_contact` AS assignee_role
-        ON 
+        ON
         (
-          civicrm_activity.id = assignee_role.activity_id 
+          civicrm_activity.id = assignee_role.activity_id
           AND assignee_role.contact_id IN (' . implode(', ', $contactIds) . ')
           AND assignee_role.record_type_id = %1
         )
@@ -90,9 +90,9 @@ class CRM_Calendar_Common_Activity {
     if (!empty($activityRoleId) && $activityRoleId == self::ACTIVITY_ROLE_CREATOR_ID) {
       $query .= '
         LEFT JOIN `civicrm_activity_contact` AS creator_role
-        ON 
+        ON
         (
-          civicrm_activity.id = creator_role.activity_id 
+          civicrm_activity.id = creator_role.activity_id
           AND creator_role.contact_id IN (' . implode(', ', $contactIds) . ')
           AND creator_role.record_type_id = %2
         )
@@ -100,11 +100,11 @@ class CRM_Calendar_Common_Activity {
     }
 
     if (!empty($activityRoleId) && $activityRoleId == self::ACTIVITY_ROLE_FOCUS_OR_TARGET_ID) {
-      $query .= ' 
+      $query .= '
         LEFT JOIN `civicrm_activity_contact` AS focus_or_target_role
-        ON 
+        ON
         (
-          civicrm_activity.id = focus_or_target_role.activity_id 
+          civicrm_activity.id = focus_or_target_role.activity_id
           AND focus_or_target_role.contact_id IN (' . implode(', ', $contactIds) . ')
           AND focus_or_target_role.record_type_id = %3
         )
@@ -113,10 +113,10 @@ class CRM_Calendar_Common_Activity {
 
     $query .= ' WHERE TRUE ';
 
-    $whereCondition = ' 
+    $whereCondition = '
       AND civicrm_activity_contact.contact_id IN (' . implode(', ', $contactIds) . ')
       AND civicrm_activity.is_deleted = 0
-      AND civicrm_activity.activity_date_time 
+      AND civicrm_activity.activity_date_time
           BETWEEN %4 AND %5
       AND  civicrm_case_activity.activity_id IS NULL
     ';
